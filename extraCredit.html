@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Javascript</title>
+    </head>
+
+    <body>
+        <h1>Joes hotdogs</h1>
+        <script>
+            //create a function that can round floats
+            function roundPrice(price) {
+                price = (Math.round(price * 100) / 100).toString()
+                if (price[(price.length) - 2] == ".") {
+                    price = price + 0
+                }
+                if (!(price.includes("."))) {
+                    price = price + "." + 0 + 0
+                }
+                return price
+            }         
+
+            numArray = []
+
+            for (i = 0; i < 3; i++) {
+                if (i == 0) {
+                    numArray["numDogs"] = prompt("how many hot dogs do you want?")
+                } else if (i == 1) {
+                    numArray["numFries"] = prompt("how many fries do you want?")
+                } else {
+                    numArray["numSoda"] = prompt("how many sodas do you want?")
+                }
+            }
+
+            priceArray = []
+            priceArray["priceDogs"] = numArray["numDogs"] * 3.75
+            priceArray["priceFries"] = numArray["numFries"] * 3
+            priceArray["priceSoda"] = numArray["numSoda"] * 2.5
+
+            subTotal = 0
+            for(i = 0; i < 3; i++) {
+                if (i == 0) {
+                    subTotal = subTotal + +priceArray["priceDogs"]
+                } else if (i == 2) {
+                    subTotal = subTotal + +priceArray["priceFries"]
+                } else {
+                    subTotal = subTotal + +priceArray["priceSoda"]
+                }
+            }
+
+            document.write("You ordered " + numArray["numDogs"] + " hotdogs which costs $" + roundPrice(priceArray["priceDogs"]) + "</br>")
+            document.write("You ordered " + numArray["numFries"] + " french fries which costs $" + roundPrice(priceArray["priceFries"]) + "</br>")
+            document.write("You ordered " + numArray["numSoda"] + " Sodas which costs $" + roundPrice(priceArray["priceSoda"]) + "</br>")
+
+
+            document.write("Your subtotal before discount is $" + roundPrice(subTotal) + "</br>")
+
+            //check for discount
+            if (subTotal >= 25) {
+                subTotal = (subTotal * 0.9)
+                document.write("Your subtotal with discount is $" + roundPrice(subTotal) + "</br>")
+            }
+
+            taxAmount = subTotal * 0.0625
+
+            document.write("Your tax amount is $" + roundPrice(taxAmount) + "</br>")
+
+            subTotal = +subTotal + +taxAmount
+
+            document.write("Your final total is $" + roundPrice(subTotal) + "</br>")
+            
+
+        </script>
+    </body>
+</html>

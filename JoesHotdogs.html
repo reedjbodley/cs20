@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Joe's Hotdog Stand</title>
+    </head>
+
+    <body>
+        <h1>Joes hotdogs</h1>
+        <script>
+            //create a function that can round floats
+            function roundPrice(price) {
+                price = (Math.round(price * 100) / 100).toString()
+                if (price[(price.length) - 2] == ".") {
+                    price = price + 0
+                }
+                if (!(price.includes("."))) {
+                    price = price + "." + 0 + 0
+                }
+                return price
+            }         
+            //prompt user  
+            const numDogs = prompt("how many hot dogs do you want?")
+            const numFries = prompt("how many fries do you want?")
+            const numSoda = prompt("how many sodas do you want?")
+
+
+            priceDogs = numDogs * 3.75
+            priceFries = numFries * 3
+            priceSoda = numSoda * 2.5
+
+            subTotal = +priceDogs + +priceFries + +priceSoda
+
+            document.write("You ordered " + numDogs + " hotdogs which costs $" + roundPrice(priceDogs) + "</br>")
+            document.write("You ordered " + numFries + " french fries which costs $" + roundPrice(priceFries) + "</br>")
+            document.write("You ordered " + numSoda + " Sodas which costs $" + roundPrice(priceSoda) + "</br>")
+
+
+            document.write("Your subtotal before discount is $" + roundPrice(subTotal) + "</br>")
+
+            //check for discount
+            if (subTotal >= 25) {
+                subTotal = (subTotal * 0.9)
+                document.write("Your subtotal with discount is $" + roundPrice(subTotal) + "</br>")
+            }
+
+            taxAmount = subTotal * 0.0625
+
+            document.write("Your tax amount is $" + roundPrice(taxAmount) + "</br>")
+
+            subTotal = +subTotal + +taxAmount
+
+            document.write("Your final total is $" + roundPrice(subTotal) + "</br>")
+            
+
+        </script>
+    </body>
+</html>
