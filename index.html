@@ -2,29 +2,136 @@
 
 <html>
     <head>
-        <title>Surf Edits</title>
-        <link rel="stylesheet" href="style.css">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <title>TicTacToe</title>
+        <script>
+        </script>
     </head>
     <body>
-        <div class="banner">
-            <div class="navbar">
-                <img src="surflogo.jpg" class="logo">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contactform.html">Contact</a></li>
-                    <li><a href="athletes.html">Athletes</a></li>
-                </ul>
+        <h1>Tic-Tac-Toe</h1>
+        <p id="playerTurn">X turn to play</p>
+        <div id="board">
+            <div id="cellRow1">
             </div>
-            <div class="content">
-                <h1>CREATE YOUR VIDEO</h1>
-                <p>We make surfing compilations with videos you send in.
-                    send your videos in today!
-                </p>
-                <div>
-                    <button type="button"><span></span>CREATE</button>
-                </div>
+            <div id="cellRow2">
+            </div>
+            <div id="cellRow3">
             </div>
         </div>
-    </body>
+        <div class="container">
+            <div class="center">
+              <button id="clearButton"></button>
+            </div>
+          </div>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
 
-</html>
+                const row1 = document.getElementById("cellRow1")
+                const row2 = document.getElementById("cellRow2")
+                const row3 = document.getElementById("cellRow3")
+
+                boardCells = []
+
+                function move(cell) {
+                    if(cell.textContent == "") {
+                        cell.textContent = currPlayer
+                        if(isOver()) {
+                            alert("The GAME IS OVER AND PLAYER " + currPlayer + " HAS WON!")
+                            clearBoard()
+                        }
+                        if (isStalemate()) {
+                            alert("THE GAME HAS ENDED IN A DRAW")
+                            clearBoard()
+                        }
+                        currPlayer = changeTurn(currPlayer)
+                    } else {
+                        alert("please choose an empty box!")
+                    }
+                }
+                function changeTurn(currPlayer) {
+                    if (currPlayer == 'X') {
+                        currPlayer = 'O'
+                    } else {
+                        currPlayer = 'X'
+                    }
+                    p = document.getElementById("playerTurn")
+                    turnString = currPlayer + " turn to play"
+                    p.innerHTML = turnString
+                    return currPlayer
+                }
+
+                for(i=0;i<3;i++) {
+                    const newDiv = document.createElement("div")
+                    newDiv.className = "boardCell"
+                    boardCells.push(newDiv)
+                    newDiv.addEventListener("click", function() {
+                        newDiv.isclicked = true
+                        move(this)
+                    })
+                    row1.appendChild(newDiv)
+                }
+                for(i=3;i<6;i++) {
+                    const newDiv = document.createElement("div")
+                    newDiv.className = "boardCell"
+                    boardCells.push(newDiv)
+                    newDiv.addEventListener("click", function() {
+                        newDiv.isclicked = true
+                        move(this)
+                    })
+                    row2.appendChild(newDiv)
+                }
+                for(i=6;i<9;i++) {
+                    const newDiv = document.createElement("div")
+                    newDiv.className = "boardCell"
+                    boardCells.push(newDiv)
+                    newDiv.addEventListener("click", function() {
+                        newDiv.isclicked = true
+                        move(this)
+                    })
+                    row3.appendChild(newDiv)
+                }
+            })
+            currPlayer = 'X'
+            game_over = false
+
+            function isOver() {
+                if((boardCells[4].isclicked && (boardCells[4].textContent == boardCells[0].textContent) && (boardCells[4].textContent == boardCells[8].textContent))
+                || (boardCells[4].isclicked && (boardCells[4].textContent == boardCells[2].textContent) && (boardCells[4].textContent == boardCells[6].textContent))
+                || (boardCells[4].isclicked && (boardCells[4].textContent == boardCells[1].textContent) && (boardCells[4].textContent == boardCells[7].textContent))
+                || (boardCells[4].isclicked && (boardCells[4].textContent == boardCells[3].textContent) && (boardCells[4].textContent == boardCells[5].textContent))
+                || (boardCells[0].isclicked && (boardCells[0].textContent == boardCells[1].textContent) && (boardCells[0].textContent == boardCells[2].textContent))
+                || (boardCells[0].isclicked && (boardCells[0].textContent == boardCells[3].textContent) && (boardCells[0].textContent == boardCells[6].textContent))
+                || (boardCells[8].isclicked && (boardCells[8].textContent == boardCells[6].textContent) && (boardCells[8].textContent == boardCells[7].textContent))
+                || (boardCells[8].isclicked && (boardCells[8].textContent == boardCells[5].textContent) && (boardCells[8].textContent == boardCells[2].textContent))) {
+                    return true
+            } else {
+                return false
+            }
+            }
+
+            function clearBoard() {
+                x = document.getElementById("clearButton")
+                x.innerHTML = "Clear Board?"
+                x.addEventListener("click", function() {
+                    for(i = 0; i < 9; i++) {
+                        boardCells[i].isclicked = false
+                        boardCells[i].textContent = ""
+                    }
+                })
+            }
+                        
+            function isStalemate() {
+                stalemate = true
+                for (i=0; i < 9; i++) {
+                    if(boardCells[i].textContent == "") {
+                        stalemate = false
+                    }
+                }
+                return stalemate
+            }
+                        
+         </script>
+     </body>
+ </html>
