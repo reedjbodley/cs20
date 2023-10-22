@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>json2.html</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+    <body> 
+
+        <h1>Filter Products by Category</h1>
+        <form id="filter-form">
+            <label for="category">Select Category:</label>
+            <select id="category">
+            </select>
+            <button type="button" id="filter-button">Filter</button>
+        </form>
+        <div id="filtered-products"></div>
+
+        <script language="javascript">
+            $.get("https://raw.githubusercontent.com/reedjbodley/cs20/main/products.json", function(data) {
+                const products = JSON.parse(data)
+                populateCategorys(products)
+                $("#filter-button").click(function() {
+                    const selectedCategory = $("#category").val()
+                    displayProducts(products, selectedCategory)
+                })
+            })
+
+            function populateCategorys(products) {
+                categories = document.getElementById("category")
+                newCategory = document.createElement("option")
+
+                for(i = 0; i < 3; i++) {
+                    newCategory = document.createElement("option")
+                    newCategory.text = products[0].category[i]
+                    categories.add(newCategory)
+                }
+            }
+
+            function displayProducts(products, selectedCategory) {
+                filtProducts = document.getElementById("filtered-products")
+                $("#filtered-products").empty()
+                
+                for(i=0; i < 12; i++) {
+                    if(products[i].category.includes(selectedCategory)){
+                        const productDiv = document.createElement("div")                      
+                        productDiv.innerHTML = 
+                        '<h1>' + products[i].name + '</h1>' +
+                        '<p>Description: ' + products[i].description + '</p>' + '<p>Size: ' + products[i].size +
+                        '</p>' + '<p>Price: ' + products[i].price + '</p>' + '<p>Categories: ' +
+                        products[i].category.join(', ') + '</p>'
+                        filtProducts.appendChild(productDiv)
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

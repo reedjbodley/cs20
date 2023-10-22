@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>json2.html</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+    <body> 
+
+        <div id="product-data"></div>
+
+        <script language="javascript">
+            $.get("https://raw.githubusercontent.com/reedjbodley/cs20/main/products.json", function(data) {
+                
+                const products = JSON.parse(data)
+                const productContainer = document.getElementById("product-data")
+
+                for(i = 0; i < 12; i++) {
+                    //create a new div to store content of each product
+                    const productDiv = document.createElement("div")
+                    //add the html for that specific product to the div
+                    productDiv.innerHTML = '<h1>' + products[i].name + '</h1>' +
+                    '<p>Description: ' + products[i].description + '</p>' + '<p>Size: ' + products[i].size +
+                    '</p>' + '<p>Price: ' + products[i].price + '</p>' + '<p>Categories: ' +
+                    products[i].category.join(', ') + '</p>'
+                    //append each new div to the original product div
+                    productContainer.appendChild(productDiv)
+                 }
+            });
+
+        </script>
+
+          
+    </body>
+</html>
