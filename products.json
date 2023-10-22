@@ -1,0 +1,86 @@
+[
+    {
+        "name" : "Helmet",
+        "description" : "used for contact sports",
+        "size" : "medium",
+        "price" : "$75",
+        "category" : ["Football", "Hockey", "Lacrosse"]
+    },
+    {
+        "name" : "Hockey Stick",
+        "description" : "bauer 200ex with 75 whip",
+        "size" : "medium",
+        "price" : "$200",
+        "category" : ["Hockey"]
+    },
+    {
+        "name" : "Lacrosse Stick",
+        "description" : "warrior fogo stick",
+        "size" : "small",
+        "price" : "$100",
+        "category" : ["Lacrosse"]
+    },
+    {
+        "name" : "Turf Cleats",
+        "description" : "Nike 2022 next gen",
+        "size" : "large",
+        "price" : "$150",
+        "category" : ["Football", "lacrosse"]
+    },
+    {
+        "name" : "Football",
+        "description" : "Wilson game replica ball",
+        "size" : "large",
+        "price" : "$40",
+        "category" : ["Football"]
+    },
+    {
+        "name" : "Hockey Net",
+        "description" : "NHL regulation hockey net",
+        "size" : "large",
+        "price" : "$500",
+        "category" : ["Hockey"]
+    },
+    {
+        "name" : "Lacrosse Goal",
+        "description" : "PLL regulation Lacrosse net",
+        "size" : "large",
+        "price" : "$400",
+        "category" : ["lacrosse"]
+    },
+    {
+        "name" : "Lacrosse Balls",
+        "description" : "50 white lacrosse balls",
+        "size" : "large",
+        "price" : "$50",
+        "category" : ["lacrosse"]
+    },
+    {
+        "name" : "Hockey Pucks",
+        "description" : "50 regulation hockey pucks",
+        "size" : "large",
+        "price" : "$50",
+        "category" : ["lacrosse"]
+    },
+    {
+        "name" : "Ice Skates",
+        "description" : "Bauer Vapor fly ice skates",
+        "size" : "small",
+        "price" : "$150",
+        "category" : ["Hockey"]
+    },
+    {
+        "name" : "Shin Gaurds",
+        "description" : "Nike shin gaurds",
+        "size" : "large",
+        "price" : "$75",
+        "category" : ["Hockey"]
+    },
+    {
+        "name" : "Shoulder Pads",
+        "description" : "Warrior shoulder pads",
+        "size" : "large",
+        "price" : "$200",
+        "category" : ["Football", "lacrosse", "Hockey"]
+    }
+]
