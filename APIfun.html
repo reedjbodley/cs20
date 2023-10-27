@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Data Display</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3e3535;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #e66e30;
+            padding: 10px;
+        }
+        #api-data {
+            background-color: #d8d8d8;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+        p {
+            color: #97ce4c;
+            margin: 5px;
+        }
+        p1 {
+            color: #e66e30;
+        }
+        ul li {
+            color: #97ce4c;
+        }
+        h2 {
+            color: #e66e30;
+        }
+        a {
+            color: #e66e30;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Rick and Morty Character Generator</h1>
+    <div id="api-data"></div>
+    <div id="api-description">
+        <h2>About the API</h2>
+        <p>
+            The API used in this page is the Rick and Morty API, which provides information about any character that has appeared in the show Rick and Morty.
+            This API allows you to retrieve data about individual characters, this data includes details such as name, status, species, type, gender, and all episodes
+            that character has appeared in.
+        </p>
+
+        <h2>API Source</h2>
+        <p>
+            The API can be found at <a href="https://rickandmortyapi.com/">https://rickandmortyapi.com/</a>.
+            And the website I used to find this API is, <a href="https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/">https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/</a>.
+        </p>
+
+        <h2>API Request Parameters</h2>
+        <p>
+            To retrieve character data, we make a GET request to the API with a random character ID and then concatinate this id to the end of the api to get a specific chatacter.
+            The API endpoint URL is constructed as follows:
+            <code>https://rickandmortyapi.com/api/character/{characterId}</code>, where <code>{characterId}</code> is a random ID between 1 and 800 that corresponds to one character.
+        </p>
+
+        <h2>Applications</h2>
+        <p>
+            The Rick and Morty API can be helpful for the following applications:
+        </p>
+        <ul>
+            <li>Character Profile Generator: Create an app that lets fans of the show view and explore details of their favorite characters, you could filter characters by episode, and other filters.</li>
+            <li>Random Character Generator: Build a fun tool for people to find new Rick and Morty characters and learn specific facts about them.
+                 This could also turn into a game for Rick and Morty superfans who want to test their knowledge against others.</li>
+        </ul>
+    </div>
+
+    <script>
+        //generate random number from 800 options of characters
+        const randID = Math.floor(Math.random() * 800) + 1;
+        //append the randID to the api url
+        const APIstring = 'https://rickandmortyapi.com/api/character/' + randID;
+        //use fetch to get the json file from api
+        fetch(APIstring)
+            .then(response => response.json())
+            .then(data => {
+                const apiData = document.getElementById('api-data');
+                // set the innerHTML of div to display data
+                apiData.innerHTML = `
+                        <p1>Name: ${data.name}</p>
+                        <p1>Status: ${data.status}</p>
+                        <p1>Species: ${data.species}</p>
+                        <p1>Type: ${data.type}</p>
+                        <p1>Gender: ${data.gender}</p>
+                    `;
+            })
+    </script>
+</body>
+</html>
